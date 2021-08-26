@@ -12,6 +12,8 @@ public class Muestra {
     @Column(name = "muestra_id")
     private Integer muestraId;
          
+    @ManyToOne //join columns van donde esta FK
+    @JoinColumn(name = "boya", referencedColumnName = "boya_id")
     @Column(name = "boya_id")
     private Integer boyaId;
 
@@ -82,5 +84,8 @@ public class Muestra {
     private Double latitud;
 
     private Double alturaNivelMar;
+
+    public void add(Boya boya) {
+    }
 
 }

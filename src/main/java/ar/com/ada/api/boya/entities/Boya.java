@@ -1,6 +1,10 @@
 package ar.com.ada.api.boya.entities;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.*;
+
 
 @Entity
 @Table(name = "boya")
@@ -14,21 +18,26 @@ public class Boya {
   @Column(name = "color_luz")
   private ColorLuzEnum colorLuz;
 
-  @Column(name = "longitud_Instalacion")
+  @Column(name = "longitud_instalacion")
   private Double longitudInstalacion;
 
-  @Column(name = "latitud_Instalacion")
+  @Column(name = "latitud_instalacion")
   private Double latitudInstalacion;
 
-  private Integer muestra;
+  @Column(name = "muestra_id")
+  private Muestra muestra;
   
+  @OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JsonIgnore
+  private List<Muestra> muestras = new ArrayList<>();
 
-  public Integer getMuestra() {
+  public Muestra getMuestra() {
     return muestra;
   }
 
-  public void setMuestra(Integer muestra) {
+  public void setMuestra(Muestra muestra) {
     this.muestra = muestra;
+    this.muestra.add(this);
   }
 
   public Integer getBoyaId() {

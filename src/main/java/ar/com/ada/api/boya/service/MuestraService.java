@@ -1,12 +1,13 @@
 package ar.com.ada.api.boya.service;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.boya.entities.Boya;
 import ar.com.ada.api.boya.entities.Muestra;
 import ar.com.ada.api.boya.entities.Boya.ColorLuzEnum;
 import ar.com.ada.api.boya.repos.MuestraRepository;
-
+@Service
 public class MuestraService {
     
     @Autowired
