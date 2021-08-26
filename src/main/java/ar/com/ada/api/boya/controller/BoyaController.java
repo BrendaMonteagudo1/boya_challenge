@@ -8,7 +8,7 @@ import ar.com.ada.api.boya.entities.Boya;
 import ar.com.ada.api.boya.models.request.LuzBoyaResquest;
 import ar.com.ada.api.boya.models.response.GenericResponse;
 import ar.com.ada.api.boya.service.BoyaService;
-
+@RestController
 public class BoyaController {
     
     @Autowired
@@ -38,7 +38,7 @@ public class BoyaController {
         return ResponseEntity.ok(lista);
     }
 
-    @GetMapping("api/boyas/{id}")
+    @GetMapping("api/boyas/{idBoya}")
     public ResponseEntity<Boya> getBoyaPorId(@PathVariable Integer id){
         Boya boya = boyaService.buscarBoyaId(id);
 
@@ -46,7 +46,7 @@ public class BoyaController {
     }
 
     
-    @PutMapping("/api/vuelos/{id}/estados")
+    @PutMapping("/api/boyas/{id}/estados")
     public ResponseEntity<GenericResponse> putActualizarEstadoVuelo(@PathVariable Integer id,
             @RequestBody LuzBoyaResquest estadoColorLuz) {
 
@@ -60,7 +60,7 @@ public class BoyaController {
         boyaService.actualizar(boya);
         
       
-        r.message = "actualizado";
+        r.message = "Luz actualizada";
         return ResponseEntity.ok(r);
     }
 }

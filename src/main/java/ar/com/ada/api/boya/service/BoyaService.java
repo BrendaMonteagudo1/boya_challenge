@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.boya.entities.Boya;
+import ar.com.ada.api.boya.entities.Muestra;
 import ar.com.ada.api.boya.repos.BoyaRepository;
 
 @Service
@@ -20,8 +21,8 @@ public class BoyaService {
         return repo.findAll();
     }
 
-    public Boya buscarBoyaId(Integer boyaId){
-        Optional<Boya> resultado = repo.findById(boyaId);
+    public Boya buscarBoyaId(Integer Id){
+        Optional<Boya> resultado = repo.findById(Id);
 
         if(resultado.isPresent())
             return resultado.get();
@@ -31,6 +32,12 @@ public class BoyaService {
 
     public void actualizar(Boya boya) {
         repo.save(boya);
+    }
+
+    public Muestra getBoyaPorId(Integer id) {
+        Optional<Boya> resultado = repo.findById(id);
+
+        return null;
     }
 }
 

@@ -6,13 +6,30 @@ import javax.persistence.*;
 @Table(name = "boya")
 public class Boya {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "boya_id")
   private Integer boyaId;
   
+  @Column(name = "color_luz")
   private ColorLuzEnum colorLuz;
 
+  @Column(name = "longitud_Instalacion")
   private Double longitudInstalacion;
 
+  @Column(name = "latitud_Instalacion")
   private Double latitudInstalacion;
+
+  private Integer muestra;
+  
+
+  public Integer getMuestra() {
+    return muestra;
+  }
+
+  public void setMuestra(Integer muestra) {
+    this.muestra = muestra;
+  }
 
   public Integer getBoyaId() {
     return boyaId;
@@ -69,6 +86,7 @@ public class Boya {
         }
         return status;
     }
+
 }
 
 
