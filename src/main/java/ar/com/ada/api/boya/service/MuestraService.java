@@ -43,8 +43,8 @@ public class MuestraService {
 
     }
 
-    public List<Muestra> buscarBoyaId(Integer id) {
-        return repo.findByBoyaDeMuestra(id);
+    public Muestra buscarPorId(Integer id) {
+        return repo.findByMuestraId(id);
     }
 
 
@@ -117,6 +117,10 @@ public class MuestraService {
     }
     // https://www.baeldung.com/java-collection-min-max <--- Explicacion
     // equalsIgnoreCase (no case sensitive) .toLowerCase
+
+    public Muestra buscarBoyaId(Integer id) {
+        return null;
+    }
 }
 
 

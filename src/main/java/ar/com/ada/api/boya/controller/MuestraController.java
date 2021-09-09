@@ -42,10 +42,11 @@ public class MuestraController {
         return null;
     }
 
-    @GetMapping("api/muestras/boyas/{idBoya}")
-    public ResponseEntity<List<Muestra>> getMuestraPorBoya(@PathVariable Integer id) {
-        List<Muestra> muestra = muestraService.buscarBoyaId(id);
-        return ResponseEntity.ok(muestra);
+    @GetMapping("/muestras/boyas/{idBoya}")
+    public ResponseEntity<List<Muestra>> getMuestraDeBoya(@PathVariable Integer idBoya) {
+
+        return ResponseEntity.ok(muestraService.buscarMuestras(idBoya));
+
     }
 
    /* @DeleteMapping("/muestras/{id}")
@@ -69,7 +70,7 @@ public class MuestraController {
 
         GenericResponse r = new GenericResponse();
 
-        Muestra muestra = muestraService.buscarBoyaId(id); /// areglar error!
+        Muestra muestra = muestraService.buscarBoyaId(id); /// arreglar error!
         muestraService.setColorAzul(muestra);
 
         r.isOk = true;
