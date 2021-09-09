@@ -1,7 +1,14 @@
 package ar.com.ada.api.boya.entities;
+import java.util.*;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "muestra")
@@ -11,17 +18,22 @@ public class Muestra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "muestra_id")
     private Integer muestraId;
-         
-    @ManyToOne //join columns van donde esta FK
-    @JoinColumn(name = "boya", referencedColumnName = "boya_id")
+
+    @ManyToOne
+    @JoinColumn(name = "boya_id", referencedColumnName = "boya_id")
     @Column(name = "boya_id")
-    private Integer boyaId;
+    private Boya boya;
 
-    @Column(name = "horario_muestra")
-    private Date horarioMuestra;
+    private Date horario;
 
+    private Double longitud;
+
+    private Double latitud;
     @Column(name = "matricula_embarcacion")
     private String matriculaEmbarcacion;
+
+    @Column(name = "altura_nivel_mar")
+    private Double alturaNivelDelMar;
 
     public Integer getMuestraId() {
         return muestraId;
@@ -31,28 +43,20 @@ public class Muestra {
         this.muestraId = muestraId;
     }
 
-    public Integer getBoyaId() {
-        return boyaId;
+    public Boya getBoya() {
+        return boya;
     }
 
-    public void setBoyaId(Integer boyaId) {
-        this.boyaId = boyaId;
+    public void setBoya(Boya boya) {
+        this.boya = boya;
     }
 
-    public Date getHorarioMuestra() {
-        return horarioMuestra;
+    public Date getHorario() {
+        return horario;
     }
 
-    public void setHorarioMuestra(Date horarioMuestra) {
-        this.horarioMuestra = horarioMuestra;
-    }
-
-    public String getMatriculaEmbarcacion() {
-        return matriculaEmbarcacion;
-    }
-
-    public void setMatriculaEmbarcacion(String matriculaEmbarcacion) {
-        this.matriculaEmbarcacion = matriculaEmbarcacion;
+    public void setHorario(Date horario) {
+        this.horario = horario;
     }
 
     public Double getLongitud() {
@@ -71,21 +75,22 @@ public class Muestra {
         this.latitud = latitud;
     }
 
-    public Double getAlturaNivelMar() {
-        return alturaNivelMar;
+    public String getMatricula() {
+        return matriculaEmbarcacion;
     }
 
-    public void setAlturaNivelMar(Double alturaNivelMar) {
-        this.alturaNivelMar = alturaNivelMar;
+    public void setMatricula(String matriculaEmbarcacion) {
+        this.matriculaEmbarcacion = matriculaEmbarcacion;
     }
 
-    private Double longitud;
+    public Double getAlturaNivelDelMar() {
+        return alturaNivelDelMar;
+    }
 
-    private Double latitud;
-
-    private Double alturaNivelMar;
-
-    public void add(Boya boya) {
+    public void setAlturaNivelDelMar(Double alturaNivelDelMar) {
+        this.alturaNivelDelMar = alturaNivelDelMar;
     }
 
 }
+
+

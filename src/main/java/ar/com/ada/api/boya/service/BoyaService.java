@@ -1,4 +1,5 @@
 package ar.com.ada.api.boya.service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,18 @@ public class BoyaService {
   
     public void crearBoya(Boya boya) {
         repo.save(boya);
+
     }
+    
+    /*public Boya crearBoya(Double latitud, Double longitud) {
+
+        Boya boya = new Boya();
+        boya.setLatitudInstalacion(latitud);
+        boya.setLongitudInstalacion(longitud);
+        boya.setColorLuz("azul");
+
+        return repo.save(boya);
+    }*/
 
     public List<Boya> traerBoyas() {
         return repo.findAll();
@@ -41,6 +53,19 @@ public class BoyaService {
 
         return null;
     }
+
+    public List<Boya> buscarPorColor(String color) {
+        List<Boya> boyasColor = new ArrayList<>();
+
+        for (Boya boya : repo.findAll()) {
+            if (boya.getColorLuz().equals(color)) {
+                boyasColor.add(boya);
+            }
+
+        }
+        return boyasColor;
+    }
+
 }
 
 

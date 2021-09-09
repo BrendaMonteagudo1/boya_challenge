@@ -4,5 +4,5 @@ import ar.com.ada.api.boya.entities.Boya.ColorLuzEnum;
 
 public class LuzBoyaResquest {
     
-    public ColorLuzEnum estado;
+    public String estado;
 }

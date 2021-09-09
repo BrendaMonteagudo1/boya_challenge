@@ -1,22 +1,29 @@
 package ar.com.ada.api.boya.entities;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "boya")
 public class Boya {
-
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "boya_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer boyaId;
-  
+
   @Column(name = "color_luz")
-  private ColorLuzEnum colorLuz;
+  private String colorLuz;
 
   @Column(name = "longitud_instalacion")
   private Double longitudInstalacion;
@@ -24,20 +31,16 @@ public class Boya {
   @Column(name = "latitud_instalacion")
   private Double latitudInstalacion;
 
-  @Column(name = "muestra_id")
-  private Muestra muestra;
-  
-  @OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JsonIgnore
+  @OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private List<Muestra> muestras = new ArrayList<>();
 
-  public Muestra getMuestra() {
-    return muestra;
-  }
+  // @Column(name = "alerta_id")
+  // private Integer alertaId;
 
-  public void setMuestra(Muestra muestra) {
-    this.muestra = muestra;
-    this.muestra.add(this);
+  public void agregarMuestra(Muestra muestra) {
+    this.muestras.add(muestra);
+    muestra.setBoya(this);
   }
 
   public Integer getBoyaId() {
@@ -48,11 +51,11 @@ public class Boya {
     this.boyaId = boyaId;
   }
 
-  public ColorLuzEnum getColorLuz() {
+  public String getColorLuz() {
     return colorLuz;
   }
 
-  public void setColorLuz(ColorLuzEnum colorLuz) {
+  public void setColorLuz(String colorLuz) {
     this.colorLuz = colorLuz;
   }
 
@@ -71,33 +74,40 @@ public class Boya {
   public void setLatitudInstalacion(Double latitudInstalacion) {
     this.latitudInstalacion = latitudInstalacion;
   }
-  
+
+  public List<Muestra> getMuestras() {
+    return muestras;
+  }
+
+  public void setMuestras(List<Muestra> muestras) {
+    this.muestras = muestras;
+  }
+
   public enum ColorLuzEnum {
     ROJA(1), AMARILLO(2), VERDE(3), AZUL(4);
 
     private final Integer value;
 
     private ColorLuzEnum(Integer value) {
-        this.value = value;
+      this.value = value;
     }
 
     public Integer getValue() {
-        return value;
+      return value;
     }
 
     public static ColorLuzEnum parse(Integer id) {
-        ColorLuzEnum status = null; // Default
-        for (ColorLuzEnum item : ColorLuzEnum.values()) {
-            if (item.getValue().equals(id)) {
-                status = item;
-                break;
-            }
+      ColorLuzEnum status = null; // Default
+      for (ColorLuzEnum item : ColorLuzEnum.values()) {
+        if (item.getValue().equals(id)) {
+          status = item;
+          break;
         }
-        return status;
+      }
+      return status;
     }
 
-}
-
+  }
 
 
 }

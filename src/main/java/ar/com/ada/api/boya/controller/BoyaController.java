@@ -15,7 +15,7 @@ public class BoyaController {
     BoyaService boyaService;
     
 
-    @PostMapping("api/boyas") //Ningun web method devuelve void
+    @PostMapping("api/boyas") 
     public ResponseEntity<?> crearBoya(@RequestBody Boya boya){
         
         GenericResponse respuesta = new GenericResponse();
@@ -25,7 +25,7 @@ public class BoyaController {
 
         respuesta.isOk = true;
         respuesta.id = boya.getBoyaId();
-        respuesta.message = "Boya creada";
+        respuesta.message = "Boya creada con exi";
 
         return ResponseEntity.ok(respuesta);
 
@@ -47,11 +47,11 @@ public class BoyaController {
 
     
     @PutMapping("/api/boyas/{id}/estados")
-    public ResponseEntity<GenericResponse> putActualizarEstadoVuelo(@PathVariable Integer id,
+    public ResponseEntity<GenericResponse> putActualizarColorBoya(@PathVariable Integer id,
             @RequestBody LuzBoyaResquest estadoColorLuz) {
 
         GenericResponse r = new GenericResponse();
-        r.isOk = true;
+        
       
         Boya boya = boyaService.buscarBoyaId(id);
        
@@ -59,7 +59,7 @@ public class BoyaController {
         
         boyaService.actualizar(boya);
         
-      
+        r.isOk = true;
         r.message = "Luz actualizada";
         return ResponseEntity.ok(r);
     }
