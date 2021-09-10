@@ -17,6 +17,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "boya")
 public class Boya {
+
+  public Boya(double longitudInstalacion, double latitudInstalacion) {
+    this.longitudInstalacion = longitudInstalacion;
+    this.latitudInstalacion = latitudInstalacion;
+  }
+  
   @Id
   @Column(name = "boya_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)

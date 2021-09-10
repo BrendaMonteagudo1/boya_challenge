@@ -21,7 +21,6 @@ public class Muestra {
 
     @ManyToOne
     @JoinColumn(name = "boya_id", referencedColumnName = "boya_id")
-    @Column(name = "boya_id")
     private Boya boya;
 
     private Date horario;
@@ -63,7 +62,7 @@ public class Muestra {
         return longitud;
     }
 
-    public void setLongitud(Double longitud) {
+    public void setLongitud(Double longitud2) {
         this.longitud = longitud;
     }
 

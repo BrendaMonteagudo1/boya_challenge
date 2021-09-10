@@ -25,7 +25,7 @@ public class BoyaController {
 
         respuesta.isOk = true;
         respuesta.id = boya.getBoyaId();
-        respuesta.message = "Boya creada con exi";
+        respuesta.message = "Boya creada con exito";
 
         return ResponseEntity.ok(respuesta);
 
