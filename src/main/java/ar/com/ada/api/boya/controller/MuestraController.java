@@ -31,16 +31,13 @@ public class MuestraController {
 
         respuesta.isOk = true;
         respuesta.id = muestra.getMuestraId();
-        respuesta.color = getBoyaId().getColorLuz();
+        respuesta.color = muestra.getBoya().getColorLuz();
         respuesta.message = "muestra creada";
 
         return ResponseEntity.ok(respuesta);
 
     }
 
-    private Boya getBoyaId() {
-        return null;
-    }
 
     @GetMapping("/muestras/boyas/{idBoya}")
     public ResponseEntity<List<Muestra>> getMuestraDeBoya(@PathVariable Integer idBoya) {
@@ -70,7 +67,7 @@ public class MuestraController {
 
         GenericResponse r = new GenericResponse();
 
-        Muestra muestra = muestraService.buscarBoyaId(id); /// arreglar error!
+        Muestra muestra = muestraService.muestraPorId(id); //
         muestraService.setColorAzul(muestra);
 
         r.isOk = true;

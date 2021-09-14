@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.boya.entities.Boya;
 import ar.com.ada.api.boya.entities.Muestra;
-import ar.com.ada.api.boya.entities.Boya.ColorLuzEnum;
+
 import ar.com.ada.api.boya.models.response.MuestraPorColorResponse;
 import ar.com.ada.api.boya.repos.MuestraRepository;
 @Service
@@ -43,7 +43,7 @@ public class MuestraService {
 
     }
 
-    public Muestra buscarPorId(Integer id) {
+    public Muestra muestraPorId(Integer id) {
         return repo.findByMuestraId(id);
     }
 
@@ -118,9 +118,6 @@ public class MuestraService {
     // https://www.baeldung.com/java-collection-min-max <--- Explicacion
     // equalsIgnoreCase (no case sensitive) .toLowerCase
 
-    public Muestra buscarBoyaId(Integer id) {
-        return null;
-    }
 }
 
 

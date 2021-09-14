@@ -41,7 +41,9 @@ public class BoyaController {
     @GetMapping("api/boyas/{idBoya}")
     public ResponseEntity<Boya> getBoyaPorId(@PathVariable Integer id){
         Boya boya = boyaService.buscarBoyaId(id);
-
+        if (boya == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(boya);
     }
 

@@ -8,8 +8,4 @@ import ar.com.ada.api.boya.entities.Boya;
 @Repository
 public interface BoyaRepository extends JpaRepository<Boya,Integer>{
 
-    void saveAll(Integer boya);
-
-    void save(Integer boya);
-    
 }
