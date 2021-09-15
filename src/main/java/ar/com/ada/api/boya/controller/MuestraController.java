@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import java.util.*;
 
-import ar.com.ada.api.boya.entities.Boya;
 import ar.com.ada.api.boya.entities.Muestra;
 import ar.com.ada.api.boya.models.request.MuestraRequest;
 import ar.com.ada.api.boya.models.response.GenericResponse;
@@ -35,7 +34,6 @@ public class MuestraController {
         respuesta.message = "muestra creada";
 
         return ResponseEntity.ok(respuesta);
-
     }
 
 
@@ -43,7 +41,6 @@ public class MuestraController {
     public ResponseEntity<List<Muestra>> getMuestraDeBoya(@PathVariable Integer idBoya) {
 
         return ResponseEntity.ok(muestraService.buscarMuestras(idBoya));
-
     }
 
    /* @DeleteMapping("/muestras/{id}")
@@ -65,14 +62,14 @@ public class MuestraController {
    @DeleteMapping("/muestra/{id}")
     public ResponseEntity<GenericResponse> borrarMuestra(@PathVariable Integer id) {
 
-        GenericResponse r = new GenericResponse();
+        GenericResponse respuesta = new GenericResponse();
 
         Muestra muestra = muestraService.muestraPorId(id); //
         muestraService.setColorAzul(muestra);
 
-        r.isOk = true;
-        r.message = "Muestra borrada";
-        return ResponseEntity.ok(r);
+        respuesta.isOk = true;
+        respuesta.message = "Muestra borrada";
+        return ResponseEntity.ok(respuesta);
 
     }
 
@@ -93,7 +90,6 @@ public class MuestraController {
         response.horario = muestra.getHorario();
 
         return ResponseEntity.ok(response);
-
     }
 
 }

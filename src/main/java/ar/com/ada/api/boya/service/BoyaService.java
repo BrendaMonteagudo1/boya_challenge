@@ -16,12 +16,7 @@ public class BoyaService {
     @Autowired
     BoyaRepository repo;
   
-    public void crearBoya(Boya boya) {
-        repo.save(boya);
-
-    }
-    
-    /*public Boya crearBoya(Double latitud, Double longitud) {
+    public Boya crearBoya(Double latitud, Double longitud) {
 
         Boya boya = new Boya();
         boya.setLatitudInstalacion(latitud);
@@ -29,7 +24,7 @@ public class BoyaService {
         boya.setColorLuz("azul");
 
         return repo.save(boya);
-    }*/
+    }
 
     public List<Boya> traerBoyas() {
         return repo.findAll();
@@ -48,11 +43,7 @@ public class BoyaService {
         repo.save(boya);
     }
 
-    public Muestra getBoyaPorId(Integer id) {
-        Optional<Boya> resultado = repo.findById(id);
 
-        return null;
-    }
 
     public List<Boya> buscarPorColor(String color) {
         List<Boya> boyasColor = new ArrayList<>();

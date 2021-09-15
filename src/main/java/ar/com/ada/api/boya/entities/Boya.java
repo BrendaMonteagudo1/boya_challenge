@@ -18,10 +18,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "boya")
 public class Boya {
 
-  public Boya(double longitudInstalacion, double latitudInstalacion) {
+  /*public Boya(double longitudInstalacion, double latitudInstalacion) {
     this.longitudInstalacion = longitudInstalacion;
     this.latitudInstalacion = latitudInstalacion;
-  }
+  }*/
   
   @Id
   @Column(name = "boya_id")

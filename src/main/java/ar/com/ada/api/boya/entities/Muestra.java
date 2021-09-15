@@ -23,11 +23,13 @@ public class Muestra {
     @JoinColumn(name = "boya_id", referencedColumnName = "boya_id")
     private Boya boya;
 
+    @Column(name = "horario_muestra")
     private Date horario;
 
     private Double longitud;
 
     private Double latitud;
+
     @Column(name = "matricula_embarcacion")
     private String matriculaEmbarcacion;
 
