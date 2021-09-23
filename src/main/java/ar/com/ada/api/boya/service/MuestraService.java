@@ -1,4 +1,5 @@
 package ar.com.ada.api.boya.service;
+
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,15 +9,16 @@ import ar.com.ada.api.boya.entities.Muestra;
 
 import ar.com.ada.api.boya.models.response.MuestraPorColorResponse;
 import ar.com.ada.api.boya.repos.MuestraRepository;
+
 @Service
 public class MuestraService {
-    
+
     @Autowired
     MuestraRepository repo;
     @Autowired
     BoyaService boyaService;
-    
-   public Muestra crearMuestra(Integer boyaId, Date horario, String matricula, Double latitud, Double longitud,
+
+    public Muestra crearMuestra(Integer boyaId, Date horario, String matricula, Double latitud, Double longitud,
             Double alturaNivelDelMar) {
 
         Muestra muestra = new Muestra();
@@ -47,7 +49,6 @@ public class MuestraService {
         return repo.findByMuestraId(id);
     }
 
-
     public void setColorAzul(Muestra muestra) {
         muestra.getBoya().setColorLuz("azul");
         repo.save(muestra);
@@ -57,14 +58,21 @@ public class MuestraService {
         repo.delete(muestra);
     }
 
-   
     public List<Muestra> buscarMuestras(Integer idBoya) {
-
         Boya boya = boyaService.buscarBoyaId(idBoya);
-
         return boya.getMuestras();
-
     }
+
+    public List<Muestra> buscarMuestras2(Integer idBoya) {
+        Boya boya = boyaService.buscarBoyaId(idBoya);
+        if (boya!=null){
+            return boya.getMuestras();
+        }
+        else 
+            return null;
+ 
+    }
+    
 
     public String colorMuestra(Double alturaNivelDelMar) {
 
@@ -80,11 +88,9 @@ public class MuestraService {
     public List<MuestraPorColorResponse> buscarMuestrasPorColor(String color) {
 
         List<MuestraPorColorResponse> muestrasPorColor = new ArrayList<>();
-
-        // List<Boya> boyasColor = boyaServece.buscarPorColor(color);
+        // List<Boya> boyasColor = boyaService.buscarPorColor(color);
 
         for (Muestra muestra : repo.findAll()) {
-
             MuestraPorColorResponse muestraPorColor = new MuestraPorColorResponse();
 
             if (colorMuestra(muestra.getAlturaNivelDelMar()).equals(color.toLowerCase())) {
@@ -94,9 +100,7 @@ public class MuestraService {
                 muestraPorColor.alturaNivelDelMar = muestra.getAlturaNivelDelMar();
 
                 muestrasPorColor.add(muestraPorColor);// add(muestraPorColor);
-
             }
-
         }
         return muestrasPorColor;
 
@@ -118,9 +122,19 @@ public class MuestraService {
     // https://www.baeldung.com/java-collection-min-max <--- Explicacion
     // equalsIgnoreCase (no case sensitive) .toLowerCase
 
+    public boolean resetearColorBoyaMuestra(Integer muestraId) {
+        Muestra muestra = repo.findByMuestraId(muestraId);
+        /*
+         * Integer boyaId = muestra.getBoya().getBoyaId(); Boya boya =
+         * boyaService.buscarBoya(boyaId);
+         */
+        if (muestra != null) {
+            Boya boya = muestra.getBoya();
+            boya.setColorLuz("AZUL");
+            boyaService.guardarBoya(boya);
+            return true;
+        } else
+            return false;
+
+    }
 }
-
-
-
-
-

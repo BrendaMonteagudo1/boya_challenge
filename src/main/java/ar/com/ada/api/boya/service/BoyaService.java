@@ -56,7 +56,29 @@ public class BoyaService {
         }
         return boyasColor;
     }
+   
 
+    public boolean actualizarColorBoya(Integer boyaId, String colorLuz){
+        Boya boya= buscarBoyaId(boyaId);
+        if(boya!=null){
+            boya.setColorLuz(colorLuz);
+            guardarBoya(boya);
+            return true;
+        }
+        return false;
+    }
+
+    public void guardarBoya(Boya boya){
+        repo.save(boya);
+    }
+
+    
+    public boolean existeBoya(Integer boyaId){
+        if(buscarBoyaId(boyaId)!=null)
+            return true;
+        else
+            return false;
+    }
 }
 
 
